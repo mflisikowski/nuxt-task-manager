@@ -1,10 +1,20 @@
 <script setup lang="ts">
-import { TableBody, Table } from "@/components/ui/table";
-
 import AddTaskButton from "@/components/AddTaskButton.vue";
-import TableHeader from "@/components/table/TableHeader.vue";
 import Breadcrumb from "@/components/Breadcrumb.vue";
-import TableRow from "@/components/table/TableRow.vue";
+import DataTable from "@/components/table/DataTable.vue";
+
+import { useTaskStore } from "@/stores/useTaskStore";
+import { columns } from "@/lib/tasks-columns";
+
+import { storeToRefs } from "pinia";
+import { onMounted } from "vue";
+
+const taskStore = useTaskStore();
+const { tasks } = storeToRefs(taskStore);
+
+onMounted(() => {
+  taskStore.fetchTasks();
+});
 </script>
 
 <template>
@@ -19,20 +29,7 @@ import TableRow from "@/components/table/TableRow.vue";
       </header>
 
       <main class="grid flex-1 items-start gap-4">
-        <Table>
-          <TableHeader />
-          <TableBody>
-            <TableRow
-              v-for="i in 10"
-              :priority="{ variant: 'default', label: 'Low' }"
-              :status="{ variant: 'default', label: 'To Do' }"
-              :description="`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`"
-              :title="`Task ${i}`"
-              :key="i"
-              :id="i.toString()"
-            />
-          </TableBody>
-        </Table>
+        <DataTable :columns="columns" :data="tasks" />
       </main>
     </div>
   </div>
