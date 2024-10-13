@@ -8,4 +8,9 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@prisma/nuxt",
   ],
+  vite: {
+    optimizeDeps: {
+      include: ["@prisma/client"],
+    },
+  },
 });
