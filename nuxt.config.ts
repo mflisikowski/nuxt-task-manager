@@ -8,10 +8,4 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@prisma/nuxt",
   ],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
 });
