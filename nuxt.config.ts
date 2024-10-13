@@ -13,4 +13,19 @@ export default defineNuxtConfig({
       include: ["@prisma/client"],
     },
   },
+  build: {
+    transpile: ["@prisma/client"],
+  },
+  nitro: {
+    externals: {
+      inline: ["@prisma/client"],
+    },
+  },
+  typescript: {
+    strict: true,
+  },
+  tailwindcss: {
+    cssPath: "~/assets/css/tailwind.css",
+    configPath: "tailwind.config.ts",
+  },
 });
