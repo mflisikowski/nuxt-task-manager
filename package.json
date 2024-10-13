@@ -7,27 +7,41 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev",
+    "prisma:studio": "prisma studio",
+    "migrate": "prisma migrate deploy",
+    "db:seed": "node --loader ts-node/esm prisma/seed.mjs"
   },
   "dependencies": {
-    "@tanstack/vue-table": "^8.20.5",
-    "@vueuse/core": "^11.1.0",
+    "@pinia/nuxt": "^0.5.1",
+    "@prisma/nuxt": "^0.0.35",
+    "@tanstack/vue-table": "^8.11.0",
+    "@vueuse/core": "^10.7.0",
     "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.1",
-    "lucide-vue-next": "^0.451.0",
-    "nuxt": "^3.13.0",
-    "radix-vue": "^1.9.7",
-    "tailwind-merge": "^2.5.3",
+    "clsx": "^2.0.0",
+    "lucide-vue-next": "^0.294.0",
+    "nuxt": "^3.8.2",
+    "pinia": "^2.1.7",
+    "radix-vue": "^1.2.4",
+    "tailwind-merge": "^2.1.0",
     "tailwindcss-animate": "^1.0.7",
-    "uuid": "^10.0.0",
-    "vue": "latest",
-    "vue-router": "latest"
+    "uuid": "^9.0.1",
+    "vue": "^3.3.10",
+    "vue-router": "^4.2.5",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.12.1",
-    "@types/uuid": "^10.0.0",
-    "shadcn-nuxt": "^0.10.4",
-    "tailwindcss": "^3.4.13",
-    "typescript": "^5.6.3"
+    "@faker-js/faker": "^9.0.3",
+    "@nuxtjs/tailwindcss": "^6.10.1",
+    "@prisma/client": "^5.20.0",
+    "@types/node": "^22.7.5",
+    "@types/uuid": "^9.0.7",
+    "prisma": "^5.7.0",
+    "shadcn-nuxt": "^0.8.0",
+    "tailwindcss": "^3.3.6",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
   }
 }
