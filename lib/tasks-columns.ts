@@ -57,6 +57,6 @@ export const columns: ColumnDef<TaskSchema>[] = [
   },
   {
     id: "actions",
-    cell: () => h(TableActions),
+    cell: ({ row }) => h(TableActions, { task: row.original }),
   },
 ];
