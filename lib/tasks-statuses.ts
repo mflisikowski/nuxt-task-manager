@@ -1,21 +1,21 @@
 // prettier-ignore
 import { CheckCircleIcon, CircleIcon, WatchIcon } from "lucide-vue-next";
-import { TaskStatus } from "@prisma/client";
+import { taskStatusEnum } from "@/server/schema";
 import { h } from "vue";
 
 export const tasksStatuses = [
   {
-    value: TaskStatus.TO_DO,
+    value: taskStatusEnum.enumValues[0],
     label: "Todo",
     icon: h(CircleIcon),
   },
   {
-    value: TaskStatus.IN_PROGRESS,
+    value: taskStatusEnum.enumValues[1],
     label: "In Progress",
     icon: h(WatchIcon),
   },
   {
-    value: TaskStatus.COMPLETED,
+    value: taskStatusEnum.enumValues[2],
     label: "Done",
     icon: h(CheckCircleIcon),
   },

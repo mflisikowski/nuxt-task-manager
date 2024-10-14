@@ -1,27 +1,27 @@
-import type { TaskSchema } from "@/types/tasks";
-import { TaskStatus } from "@prisma/client";
+import type { Task } from "@/server/schema";
+import { taskStatusEnum } from "@/server/schema";
 import { apiRequest } from "@/lib/api";
 import { defineStore } from "pinia";
 
 export const useTaskStore = defineStore("tasks", {
   state: () => ({
-    tasks: [] as TaskSchema[],
+    tasks: [] as Task[],
     isLoading: false,
     error: null as string | null,
   }),
 
   actions: {
     async fetchTasks() {
-      this.tasks = await apiRequest<TaskSchema[]>("/api/tasks");
+      this.tasks = await apiRequest<Task[]>("/api/tasks");
     },
 
-    async addTask(task: Omit<TaskSchema, "id">) {
-      const newTask = await apiRequest<TaskSchema>("/api/tasks", "POST", task);
+    async addTask(task: Omit<Task, "id" | "createdAt" | "updatedAt">) {
+      const newTask = await apiRequest<Task>("/api/tasks", "POST", task);
       this.tasks = [...this.tasks, newTask];
     },
 
-    async editTask(id: string, updatedTask: Partial<TaskSchema>) {
-      const editedTask = await apiRequest<TaskSchema>(
+    async editTask(id: string, updatedTask: Partial<Task>) {
+      const editedTask = await apiRequest<Task>(
         `/api/tasks/${id}`,
         "PUT",
         updatedTask
@@ -37,8 +37,12 @@ export const useTaskStore = defineStore("tasks", {
 
   getters: {
     completedTasks: (state) =>
-      state.tasks.filter((task) => task.status === TaskStatus.COMPLETED),
+      state.tasks.filter(
+        (task) => task.status === taskStatusEnum.enumValues[2]
+      ),
     incompleteTasks: (state) =>
-      state.tasks.filter((task) => task.status !== TaskStatus.COMPLETED),
+      state.tasks.filter(
+        (task) => task.status !== taskStatusEnum.enumValues[2]
+      ),
   },
 });

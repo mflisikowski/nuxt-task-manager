@@ -8,26 +8,26 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "prepare": "prisma generate",
-    "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio",
-    "migrate": "prisma migrate deploy",
-    "db:seed": "node --loader ts-node/esm prisma/seed.mjs",
-    "vercel-build": "prisma generate && prisma migrate deploy && nuxt build"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit push",
+    "db:studio": "drizzle-kit studio",
+    "db:seed": "tsx server/seed",
+    "vercel-build": "pnpm run db:migrate && nuxt build"
   },
   "dependencies": {
     "@nuxtjs/tailwindcss": "^6.12.1",
-    "@prisma/client": "^5.20.0",
     "@pinia/nuxt": "^0.5.5",
-    "@prisma/nuxt": "^0.0.35",
     "@tanstack/vue-table": "^8.20.5",
     "@vueuse/core": "^10.11.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.29.4",
+    "drizzle-zod": "^0.5.1",
     "lucide-vue-next": "^0.294.0",
     "nuxt": "^3.13.2",
     "pinia": "^2.2.4",
+    "postgres": "^3.4.4",
     "radix-vue": "^1.9.7",
     "shadcn-nuxt": "^0.10.4",
     "tailwind-merge": "^2.5.3",
@@ -38,13 +38,15 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@prisma/client": "^5.20.0",
+    "@faker-js/faker": "^9.0.3",
     "@types/node": "^22.7.5",
+    "@types/pg": "^8.11.10",
     "@types/uuid": "^9.0.8",
     "autoprefixer": "^10.4.20",
+    "drizzle-kit": "^0.25.0",
     "postcss": "^8.4.47",
-    "prisma": "5.20.0",
     "ts-node": "^10.9.2",
+    "tsx": "^4.19.1",
     "typescript": "^5.6.3"
   }
 }

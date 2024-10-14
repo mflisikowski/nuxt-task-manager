@@ -1,11 +1,8 @@
 import type { Column, ColumnDef, Table } from "@tanstack/vue-table";
-import type { taskIDSchema, taskSchema } from "@/schemas/tasks";
+import type { taskSchema } from "@/schemas/tasks";
 import type { z } from "zod";
 
-export type { TaskPriority, TaskStatus } from "@prisma/client";
 export type TaskSchema = z.infer<typeof taskSchema>;
-export type TaskID = z.infer<typeof taskIDSchema>;
-
 export interface TasksDataTableProps {
   columns: ColumnDef<TaskSchema, any>[];
   data: TaskSchema[];

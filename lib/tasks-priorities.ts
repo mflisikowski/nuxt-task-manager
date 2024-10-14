@@ -1,20 +1,20 @@
 import { ArrowDownIcon, ArrowRightIcon, ArrowUpIcon } from "lucide-vue-next";
-import { TaskPriority } from "@prisma/client";
+import { taskPriorityEnum } from "~/server/schema";
 import { h } from "vue";
 
 export const tasksPriorities = [
   {
-    value: TaskPriority.LOW,
+    value: taskPriorityEnum.enumValues[0],
     label: "Low",
     icon: h(ArrowDownIcon),
   },
   {
-    value: TaskPriority.MEDIUM,
+    value: taskPriorityEnum.enumValues[1],
     label: "Medium",
     icon: h(ArrowRightIcon),
   },
   {
-    value: TaskPriority.HIGH,
+    value: taskPriorityEnum.enumValues[2],
     label: "High",
     icon: h(ArrowUpIcon),
   },
