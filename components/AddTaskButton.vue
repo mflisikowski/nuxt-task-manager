@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import { Button } from "@/components/ui/button";
 import { PlusIcon } from "lucide-vue-next";
+import TaskDialog from "@/components/TaskDialog.vue";
 </script>
 
 <template>
-  <Button>
-    <PlusIcon class="mr-2 h-4 w-4" />
-    Add Task
-  </Button>
+  <TaskDialog
+    :triggerButton="{
+      label: 'Add Task',
+      icon: PlusIcon,
+    }"
+    title="Add New Task"
+  />
 </template>
