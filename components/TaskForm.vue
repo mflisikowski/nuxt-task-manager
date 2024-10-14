@@ -62,80 +62,82 @@ async function onSubmit(values: FormSchemaType) {
 </script>
 
 <template>
-  <form @submit.prevent="form.handleSubmit(onSubmit)" class="space-y-8">
-    <FormField v-slot="{ field }" name="title">
-      <FormItem>
-        <FormLabel>Title</FormLabel>
-        <FormControl>
-          <Input v-bind="field" placeholder="Enter task title" />
-        </FormControl>
-        <FormMessage />
-      </FormItem>
-    </FormField>
-
-    <FormField v-slot="{ field }" name="description">
-      <FormItem>
-        <FormLabel>Description</FormLabel>
-        <FormControl>
-          <Textarea v-bind="field" placeholder="Enter task description" />
-        </FormControl>
-        <FormMessage />
-      </FormItem>
-    </FormField>
-
-    <FormField v-slot="{ field }" name="status">
-      <FormItem>
-        <FormLabel>Status</FormLabel>
-        <Select v-bind="field">
+  <Form @submit="onSubmit">
+    <form @submit.prevent="form.handleSubmit(onSubmit)" class="space-y-8">
+      <FormField v-slot="{ field }" name="title">
+        <FormItem>
+          <FormLabel>Title</FormLabel>
           <FormControl>
-            <SelectTrigger>
-              <SelectValue placeholder="Select task status" />
-            </SelectTrigger>
+            <Input v-bind="field" placeholder="Enter task title" />
           </FormControl>
-          <SelectContent>
-            <SelectItem
-              v-for="status in tasksStatuses"
-              :key="status.value"
-              :value="status.value"
-            >
-              {{ status.label }}
-            </SelectItem>
-          </SelectContent>
-        </Select>
-        <FormMessage />
-      </FormItem>
-    </FormField>
+          <FormMessage />
+        </FormItem>
+      </FormField>
 
-    <FormField v-slot="{ field }" name="priority">
-      <FormItem>
-        <FormLabel>Priority</FormLabel>
-        <Select v-bind="field">
+      <FormField v-slot="{ field }" name="description">
+        <FormItem>
+          <FormLabel>Description</FormLabel>
           <FormControl>
-            <SelectTrigger>
-              <SelectValue placeholder="Select task priority" />
-            </SelectTrigger>
+            <Textarea v-bind="field" placeholder="Enter task description" />
           </FormControl>
-          <SelectContent>
-            <SelectItem
-              v-for="priority in tasksPriorities"
-              :key="priority.value"
-              :value="priority.value"
-            >
-              {{ priority.label }}
-            </SelectItem>
-          </SelectContent>
-        </Select>
-        <FormMessage />
-      </FormItem>
-    </FormField>
+          <FormMessage />
+        </FormItem>
+      </FormField>
 
-    <div class="flex justify-end space-x-4">
-      <Button type="button" variant="outline" @click="emit('cancel')"
-        >Cancel</Button
-      >
-      <Button type="submit" :disabled="isSubmitting">
-        {{ props.task ? "Update" : "Add" }} Task
-      </Button>
-    </div>
-  </form>
+      <FormField v-slot="{ field }" name="status">
+        <FormItem>
+          <FormLabel>Status</FormLabel>
+          <Select v-bind="field">
+            <FormControl>
+              <SelectTrigger>
+                <SelectValue placeholder="Select task status" />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent>
+              <SelectItem
+                v-for="status in tasksStatuses"
+                :key="status.value"
+                :value="status.value"
+              >
+                {{ status.label }}
+              </SelectItem>
+            </SelectContent>
+          </Select>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+
+      <FormField v-slot="{ field }" name="priority">
+        <FormItem>
+          <FormLabel>Priority</FormLabel>
+          <Select v-bind="field">
+            <FormControl>
+              <SelectTrigger>
+                <SelectValue placeholder="Select task priority" />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent>
+              <SelectItem
+                v-for="priority in tasksPriorities"
+                :key="priority.value"
+                :value="priority.value"
+              >
+                {{ priority.label }}
+              </SelectItem>
+            </SelectContent>
+          </Select>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+
+      <div class="flex justify-end space-x-4">
+        <Button type="button" variant="outline" @click="emit('cancel')"
+          >Cancel</Button
+        >
+        <Button type="submit" :disabled="isSubmitting">
+          {{ props.task ? "Update" : "Add" }} Task
+        </Button>
+      </div>
+    </form>
+  </Form>
 </template>
