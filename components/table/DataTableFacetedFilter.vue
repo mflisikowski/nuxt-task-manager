@@ -65,9 +65,7 @@ const selectedValues = computed(
     </PopoverTrigger>
 
     <PopoverContent class="w-[200px] p-0" align="start">
-      <!-- TODO: Fix types -->
-      <!-- <Command :filter-function="(list: DataTableFacetedFilter['options'], term) => list.filter(i => i.label.toLowerCase()?.includes(term)) " /> -->
-      <Command>
+      <Command :filter-function="(list, term) => (list as TasksDataTableFacetedFilter['options']).filter(i => i.label.toLowerCase().includes(term.toLowerCase()))" />
         <CommandInput :placeholder="title" />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
