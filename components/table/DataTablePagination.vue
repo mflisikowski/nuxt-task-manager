@@ -41,7 +41,7 @@ const pagination = {
           <SelectTrigger class="h-8 w-[70px]">
             <SelectValue :placeholder="`${tableInfo.paginationPageSize}`" />
           </SelectTrigger>
-          <SelectContent side="top">
+          <SelectContent side="top" class="bg-white">
             <SelectItem
               v-for="pageSize in PAGE_SIZE_OPTIONS"
               :value="`${pageSize}`"
