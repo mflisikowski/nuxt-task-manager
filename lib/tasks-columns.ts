@@ -14,6 +14,10 @@ export const columns: ColumnDef<TaskSchema>[] = [
     header: "Title",
   },
   {
+    accessorKey: "description",
+    header: "Description",
+  },
+  {
     accessorKey: "status",
     header: "Status",
     cell: ({ row }) => {
@@ -56,7 +60,26 @@ export const columns: ColumnDef<TaskSchema>[] = [
     },
   },
   {
-    id: "actions",
+    accessorKey: "actions",
+    header: "Actions",
     cell: ({ row }) => h(TableActions, { task: row.original }),
+  },
+  {
+    accessorKey: "createdAt",
+    header: "Created At",
+    cell: ({ row }) => {
+      const createdAt = new Date(row.getValue("createdAt"));
+      return h(Badge, () => [createdAt.toLocaleString()]);
+    },
+    sortingFn: "datetime",
+  },
+  {
+    accessorKey: "updatedAt",
+    header: "Updated At",
+    cell: ({ row }) => {
+      const updatedAt = new Date(row.getValue("updatedAt"));
+      return h(Badge, () => [updatedAt.toLocaleString()]);
+    },
+    sortingFn: "datetime",
   },
 ];

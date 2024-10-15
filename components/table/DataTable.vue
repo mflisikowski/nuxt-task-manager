@@ -19,10 +19,18 @@ import { ref } from "vue";
 
 const props = defineProps<TasksDataTableProps>();
 
-const columnVisibility = ref<VisibilityState>({});
+const columnVisibility = ref<VisibilityState>({
+  createdAt: false,
+  updatedAt: false,
+});
 const columnFilters = ref<ColumnFiltersState>([]);
 const rowSelection = ref<RowSelectionState>({});
-const sorting = ref<SortingState>([]);
+const sorting = ref<SortingState>([
+  {
+    id: "createdAt",
+    desc: true,
+  },
+]);
 
 const table = useVueTable({
   get data() {
