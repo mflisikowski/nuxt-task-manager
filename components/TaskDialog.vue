@@ -3,11 +3,11 @@ import type { Task } from "@/server/schema";
 
 // prettier-ignore
 import { DialogContent, DialogTrigger, DialogHeader, DialogTitle, Dialog } from "@/components/ui/dialog";
+import { useTaskStore } from "@/stores/useTaskStore";
 import { Button } from "@/components/ui/button";
 import TaskForm from "@/components/TaskForm.vue";
 
-import { ref, defineProps, defineEmits } from "vue";
-import { useTaskStore } from "@/stores/useTaskStore";
+import { ref } from "vue";
 
 defineProps<{
   task?: Task;
@@ -40,7 +40,7 @@ async function handleAddTask(task: Task) {
 }
 
 async function handleUpdateTask(task: Task) {
-  await taskStore.editTask(task.id, task);
+  await taskStore.updateTask(task.id, task);
   await taskStore.fetchTasks();
   closeDialog();
 }

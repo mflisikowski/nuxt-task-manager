@@ -20,7 +20,7 @@ export const useTaskStore = defineStore("tasks", {
       this.tasks = [...this.tasks, newTask];
     },
 
-    async editTask(id: string, updatedTask: Partial<Task>) {
+    async updateTask(id: string, updatedTask: Partial<Task>) {
       const editedTask = await apiRequest<Task>(
         `/api/tasks/${id}`,
         "PUT",
