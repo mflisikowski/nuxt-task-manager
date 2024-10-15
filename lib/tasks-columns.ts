@@ -4,6 +4,7 @@ import type { ColumnDef } from "@tanstack/vue-table";
 import TableActions from "@/components/table/DataTableActions.vue";
 import { tasksPriorities } from "@/lib/tasks-priorities";
 import { tasksStatuses } from "@/lib/tasks-statuses";
+import { formatDate } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 
 import { h } from "vue";
@@ -69,7 +70,7 @@ export const columns: ColumnDef<TaskSchema>[] = [
     header: "Created At",
     cell: ({ row }) => {
       const createdAt = new Date(row.getValue("createdAt"));
-      return h(Badge, () => [createdAt.toLocaleString()]);
+      return h(Badge, () => [formatDate(createdAt)]);
     },
     sortingFn: "datetime",
   },
@@ -78,7 +79,7 @@ export const columns: ColumnDef<TaskSchema>[] = [
     header: "Updated At",
     cell: ({ row }) => {
       const updatedAt = new Date(row.getValue("updatedAt"));
-      return h(Badge, () => [updatedAt.toLocaleString()]);
+      return h(Badge, () => [formatDate(updatedAt)]);
     },
     sortingFn: "datetime",
   },
