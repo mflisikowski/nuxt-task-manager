@@ -1,31 +1,48 @@
 <script setup lang="ts">
 import type { Task } from "@/server/schema";
-import {
-  DialogContent,
-  DialogTrigger,
-  DialogHeader,
-  DialogTitle,
-  Dialog,
-} from "@/components/ui/dialog";
+
+// prettier-ignore
+import { DialogContent, DialogTrigger, DialogHeader, DialogTitle, Dialog } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import TaskForm from "@/components/TaskForm.vue";
-import { ref } from "vue";
 
-const props = defineProps<{
+import { ref, defineProps, defineEmits } from "vue";
+import { useTaskStore } from "@/stores/useTaskStore";
+
+defineProps<{
   task?: Task;
   triggerButton: {
-    label?: string;
-    icon: any;
     variant?: string;
+    label?: string;
     size?: string;
+    icon: any;
   };
   title: string;
 }>();
 
+defineEmits<{
+  (e: "add-task", task: Task): void;
+  (e: "update-task", task: Task): void;
+  (e: "cancel"): void;
+}>();
+
 const isOpen = ref(false);
+const taskStore = useTaskStore();
 
 function closeDialog() {
   isOpen.value = false;
+}
+
+async function handleAddTask(task: Task) {
+  await taskStore.addTask(task);
+  await taskStore.fetchTasks();
+  closeDialog();
+}
+
+async function handleUpdateTask(task: Task) {
+  await taskStore.editTask(task.id, task);
+  await taskStore.fetchTasks();
+  closeDialog();
 }
 </script>
 
@@ -47,7 +64,12 @@ function closeDialog() {
         <DialogTitle>{{ title }}</DialogTitle>
       </DialogHeader>
 
-      <TaskForm :task="task" @submit="closeDialog" @cancel="closeDialog" />
+      <TaskForm
+        @add-task="handleAddTask"
+        @update-task="handleUpdateTask"
+        @cancel="closeDialog"
+        :task="task"
+      />
     </DialogContent>
   </Dialog>
 </template>
