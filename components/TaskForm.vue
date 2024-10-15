@@ -91,7 +91,7 @@ const handleSubmit = form.handleSubmit(onSubmit);
               <SelectValue placeholder="Select task status" />
             </SelectTrigger>
           </FormControl>
-          <SelectContent>
+          <SelectContent class="bg-white">
             <SelectItem
               v-for="status in tasksStatuses"
               :key="status.value"
@@ -114,7 +114,7 @@ const handleSubmit = form.handleSubmit(onSubmit);
               <SelectValue placeholder="Select task priority" />
             </SelectTrigger>
           </FormControl>
-          <SelectContent>
+          <SelectContent class="bg-white">
             <SelectItem
               v-for="priority in tasksPriorities"
               :key="priority.value"
