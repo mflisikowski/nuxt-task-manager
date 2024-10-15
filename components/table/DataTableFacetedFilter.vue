@@ -64,8 +64,10 @@ const selectedValues = computed(
       </Button>
     </PopoverTrigger>
 
-    <PopoverContent class="w-[200px] p-0" align="start">
-      <Command :filter-function="(list, term) => (list as TasksDataTableFacetedFilter['options']).filter(i => i.label.toLowerCase().includes(term.toLowerCase()))" />
+    <PopoverContent class="w-[200px] bg-white p-0" align="start">
+      <Command
+        :filter-function="(list, term) => (list as TasksDataTableFacetedFilter['options']).filter(i => i.label.toLowerCase().includes(term.toLowerCase()))"
+      >
         <CommandInput :placeholder="title" />
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
@@ -122,7 +124,7 @@ const selectedValues = computed(
             <CommandGroup>
               <CommandItem
                 :value="{ label: 'Clear filters' }"
-                class="justify-center text-center"
+                class="justify-center text-center cursor-pointer"
                 @select="column?.setFilterValue(undefined)"
               >
                 Clear filters

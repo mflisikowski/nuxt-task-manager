@@ -28,7 +28,7 @@ const columns = computed(() =>
       </Button>
     </DropdownMenuTrigger>
 
-    <DropdownMenuContent align="end" class="w-[150px]">
+    <DropdownMenuContent align="end" class="w-[150px] bg-white">
       <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
       <DropdownMenuSeparator />
 
