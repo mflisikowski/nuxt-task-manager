@@ -13,7 +13,7 @@ const props = defineProps<{
   <div
     :class="
       cn(
-        'flex items-center justify-center gap-2',
+        'flex items-center justify-center gap-2 min-w-[130px]',
         badgeVariants({ variant: props.variant || 'outline' }),
         props.class
       )
